@@ -1,21 +1,32 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "code-open",
-  "title": "code open",
-  "description": "code open",
+  "title": "code-open - Search and open project in VSCode",
+  "description": "Search and open project in VSCode",
   "icon": "command-icon.png",
   "author": "haupma",
+  "owner": "haupma",
   "categories": [
-    "Productivity"
+    "Productivity", "Developer Tools"
   ],
   "license": "MIT",
   "commands": [
     {
       "name": "index",
       "title": "co",
-      "subtitle": "Open in Code",
-      "description": "",
-      "mode": "view"
+      "subtitle": "Open project in VSCode",
+      "description": "Search and open project in VSCode",
+      "mode": "view",
+      "preferences": [
+        {
+          "name": "rootDir",
+          "required": true,
+          "type": "textfield",
+          "default": "~/dev",
+          "title": "Root Repository Directory",
+          "description": "Specify the root directory for searching projects. This is usually your workspace or where you keep your projects."
+        }
+      ]
     }
   ],
   "dependencies": {
