@@ -56,6 +56,7 @@ function isProject(folder: string): boolean {
 function generateTitle(folder: string, rootDir: string): string {
   let title = createRelativePath(folder);
   title = removeProjectRoot(title, rootDir);
+  title = removeLeadingSlash(title);
   return title;
 }
 
@@ -69,4 +70,8 @@ function createAbsolutePath(path: string): string {
 
 function removeProjectRoot(path: string, rootDir: string): string {
   return path.replace(rootDir, "");
+}
+
+function removeLeadingSlash(path: string): string {
+  return path.replace(/^\//, "");
 }
