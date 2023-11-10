@@ -24,8 +24,16 @@
           "required": true,
           "type": "textfield",
           "default": "~/dev",
-          "title": "Root Repository Directory",
+          "title": "Root repository directory",
           "description": "Specify the root directory for searching projects. This is usually your workspace or where you keep your projects."
+        },
+        {
+          "name": "cmd",
+          "required": false,
+          "type": "textfield",
+          "default": "code",
+          "title": "The program to open the project with",
+          "description": "Specify the program to open the project with. This will default to running \"code <YOUR_PROJECT>\""
         }
       ]
     }

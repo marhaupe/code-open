@@ -5,6 +5,7 @@ import { search } from "./search";
 
 type Preferences = {
   rootDir: string;
+  cmd: string;
 };
 
 const preferences = getPreferenceValues<Preferences>();
@@ -35,7 +36,7 @@ export default function Command() {
                 <Action
                   title={"Open"}
                   onAction={() => {
-                    exec("code " + folder.path);
+                    exec(preferences.cmd + " " + folder.path);
                     closeMainWindow();
                   }}
                 />

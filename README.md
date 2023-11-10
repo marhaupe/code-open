@@ -13,10 +13,11 @@ code-open is a Raycast extension that lets you quickly search and open your proj
 ## Installation
 
 1. Install [Raycast](https://www.raycast.com/).
-2. Clone this repository or download the extension directly.
-3. Open Raycast preferences (⌘+,).
-4. Navigate to Extensions → My Extensions.
-5. Click on "Add From Folder" and select the `code-open` folder.
+2. `git clone git@github.com:marhaupe/code-open.git`
+3. `cd code_open && npm run dev` to build the extension. You can quit it after it's built.
+4. Open Raycast preferences (⌘+,).
+5. Navigate to Extensions → My Extensions.
+6. Click on "Add From Folder" and select the `code-open` folder.
 
 ## Configuration
 
