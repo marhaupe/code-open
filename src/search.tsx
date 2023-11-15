@@ -45,6 +45,7 @@ function isProject(folder: string): boolean {
     "*.csproj",
     "*.sln",
     "go.mod",
+    "pubspec.yaml",
   ];
   const projectFolders = [".git", "node_modules"];
   return (
