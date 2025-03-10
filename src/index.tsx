@@ -18,7 +18,7 @@ export default function Command() {
   return (
     <List
       searchText={state.searchText}
-      enableFiltering
+      filtering={true}
       onSearchTextChange={(newValue) => {
         setState((previous) => ({ ...previous, searchText: newValue }));
       }}

@@ -17,23 +17,42 @@ export function search({ term, rootDir }: SearchOptions) {
   }));
 }
 
-function getProjects(rootDir: string): string[] {
-  const absoluteRootDir = createAbsolutePath(rootDir);
-  const contents = fs.readdirSync(absoluteRootDir);
-  const projects = contents
-    .map((entry) => path.join(absoluteRootDir, entry))
+function getProjects(directory: string): string[] {
+  const rootProjects = findRootProjects(directory);
+  return [
+    ...rootProjects,
+    ...rootProjects
+      .map((project) => getProjectsFromDirectory(project))
+      .flat()
+      .filter(Boolean),
+  ];
+}
+
+function findRootProjects(directory: string): string[] {
+  const absoluteDir = createAbsolutePath(directory);
+  const contents = fs.readdirSync(absoluteDir);
+  return contents
+    .map((entry) => path.join(absoluteDir, entry))
     .filter((entry) => fs.statSync(entry).isDirectory())
     .reduce((acc, entry) => {
       if (isProject(entry)) {
         acc.push(entry);
       } else {
-        acc.push(...getProjects(entry));
+        acc.push(...getProjectsFromDirectory(entry));
       }
       return acc;
     }, [] as string[]);
-  return projects;
 }
 
+function getProjectsFromDirectory(directory: string) {
+  const absoluteDir = createAbsolutePath(directory);
+  const contents = fs.readdirSync(absoluteDir);
+  return contents
+    .map((entry) => path.join(absoluteDir, entry))
+    .filter((entry) => fs.statSync(entry).isDirectory() && isProject(entry));
+}
+
+// This should probably also read the .gitignore
 function isProject(folder: string): boolean {
   const projectFiles = [
     "package.json",
@@ -49,8 +68,8 @@ function isProject(folder: string): boolean {
   ];
   const projectFolders = [".git", "node_modules"];
   return (
-    projectFolders.some((projFolder) => fs.existsSync(path.join(folder, projFolder))) ||
-    projectFiles.some((projFile) => fs.existsSync(path.join(folder, projFile)))
+    projectFolders.some((projectFolder) => fs.existsSync(path.join(folder, projectFolder))) ||
+    projectFiles.some((projectFile) => fs.existsSync(path.join(folder, projectFile)))
   );
 }
 
