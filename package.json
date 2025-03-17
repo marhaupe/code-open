@@ -24,7 +24,7 @@
           "required": true,
           "type": "textfield",
           "default": "~/dev",
-          "title": "Root repository directory",
+          "title": "Root repository directory path. Can also be a list of comma separated paths.",
           "description": "Specify the root directory for searching projects. This is usually your workspace or where you keep your projects."
         },
         {

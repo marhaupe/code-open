@@ -15,7 +15,7 @@ declare type Preferences = ExtensionPreferences
 declare namespace Preferences {
   /** Preferences accessible in the `index` command */
   export type Index = ExtensionPreferences & {
-  /** Root repository directory - Specify the root directory for searching projects. This is usually your workspace or where you keep your projects. */
+  /** Root repository directory path. Can also be a list of comma separated paths. - Specify the root directory for searching projects. This is usually your workspace or where you keep your projects. */
   "rootDir": string,
   /** The program to open the project with - Specify the program to open the project with. This will default to running "code <YOUR_PROJECT>" */
   "cmd": string

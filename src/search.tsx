@@ -9,7 +9,11 @@ type SearchOptions = {
 };
 
 export function search({ term, rootDir }: SearchOptions) {
-  const repoList = getProjects(rootDir);
+  const rootDirs = rootDir.split(",");
+  const repoList = rootDirs
+    .map((rootDir) => getProjects(rootDir))
+    .flat()
+    .filter(Boolean);
   const fzf = new Fzf(repoList);
   return fzf.find(term).map((entry) => ({
     title: generateTitle(entry.item, rootDir),
@@ -65,6 +69,8 @@ function isProject(folder: string): boolean {
     "*.sln",
     "go.mod",
     "pubspec.yaml",
+    "Makefile",
+    "README.md",
   ];
   const projectFolders = [".git", "node_modules"];
   return (
